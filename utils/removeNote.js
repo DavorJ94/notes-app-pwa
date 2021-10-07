@@ -1,15 +1,14 @@
 function removeNote(target) {
-  const notesMessage = document.querySelector(".notes-message");
-  const name = target.getAttribute("name");
-  localStorage.removeItem(name);
-  const noteElement = document.getElementById(`note-${name}`);
-  noteElement.remove();
-  const storageItems = Object.values({ ...localStorage });
-  if (storageItems.length === 0) {
-    notesMessage.style.display = "block";
-  } else {
-    notesMessage.style.display = "none";
-  }
+  const id = target.getAttribute("name");
+
+  db.collection("notes")
+    .doc(auth.currentUser?.uid)
+    .collection("notes")
+    .doc(id)
+    .delete()
+    .then(() => {
+      document.getElementById(`note-${id}`).remove();
+    });
 }
 
 export default removeNote;

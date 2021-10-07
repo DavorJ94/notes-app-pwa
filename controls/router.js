@@ -24,9 +24,3 @@ logOutBtn.addEventListener("click", (e) => {
     loginFormContainer.style.display = "block";
   });
 });
-
-{
-  /* <button class="btn" id="logInBtn">Log in</button>
-<button class="btn" id="signUpBtn">Sign Up</button>
-<button class="btn" id="logOutBtn">Log Out</button> */
-}

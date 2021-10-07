@@ -1,20 +1,25 @@
+import createNewNote from "../utils/createNewNote.js";
+import { setupUI } from "../utils/setupUI.js";
 const signUpForm = document.getElementById("signUpForm");
 const loginForm = document.getElementById("loginForm");
-const logInBtn = document.querySelector("#logInBtn");
-const signUpBtn = document.querySelector("#signUpBtn");
-const logOutBtn = document.querySelector("#logOutBtn");
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    logInBtn.style.display = "none";
-    signUpBtn.style.display = "none";
-    logOutBtn.style.display = "block";
-    mainContent.style.display = "block";
+    db.collection("notes")
+      .doc(user.uid)
+      .collection("notes")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((note) => {
+          createNewNote({ ...note.data(), id: note.id });
+        });
+      })
+      .catch((err) => {
+        console.log("err occured");
+      });
+    setupUI(user);
   } else {
-    signUpBtn.style.display = "block";
-    logInBtn.style.display = "block";
-    logOutBtn.style.display = "none";
-    loginFormContainer.style.display = "block";
+    setupUI();
   }
 });
 
@@ -24,6 +29,13 @@ signUpForm.addEventListener("submit", (e) => {
   const password = signUpForm.password.value;
 
   auth.createUserWithEmailAndPassword(email, password).then((credentials) => {
+    db.collection("notes")
+      .doc(credentials.user.uid)
+      .set({ notes: [] })
+      .catch((err) => {
+        console.log("err occured", err.message);
+      });
+
     signUpForm.reset();
     signUpFormContainer.style.display = "none";
   });

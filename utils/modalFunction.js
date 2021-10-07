@@ -1,5 +1,3 @@
-import IdGenerator from "./idGenerator.js";
-
 const modal = document.getElementById("myModal");
 const titleInput = document.querySelector(".titleInputModal");
 const textInput = document.querySelector(".noteInputModal");
@@ -31,20 +29,22 @@ export function saveToLocalStorageModal(e) {
     .getAttribute("data-currentNote");
   if (!titleInput.value && !textInput.value)
     return alert("Fill out title or text form.");
-  const localStorageItem = JSON.parse(localStorage.getItem(currentId));
-  const id = IdGenerator(localStorageItem);
-  localStorage.setItem(
-    id,
-    JSON.stringify({
-      ...localStorageItem,
+
+  db.collection("notes")
+    .doc(auth.currentUser?.uid)
+    .collection("notes")
+    .doc(currentId)
+    .update({
       titleInput: titleInput.value,
       noteInput: textInput.value,
       labelInput: labelInput.value,
-    })
-  );
+    });
+
   const clickedNoteTitle = document.querySelector(`#title-${currentId}`);
   const clickedNoteText = document.querySelector(`#text-${currentId}`);
-  const clickedNoteLabels = document.querySelector(`#labelContainer-${id}`);
+  const clickedNoteLabels = document.querySelector(
+    `#labelContainer-${currentId}`
+  );
 
   if (titleInput.value) {
     clickedNoteTitle.innerText = titleInput.value;

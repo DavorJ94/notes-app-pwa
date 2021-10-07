@@ -1,11 +1,11 @@
-function createNewNote(
+function createNewNote({
   id,
-  titleValue,
-  textValue,
-  labelValue = "",
+  titleInput,
+  labelInput = "",
   bkgColor = "white",
-  textColor = "#5f6368"
-) {
+  textColor = "#5f6368",
+  noteInput,
+}) {
   const noteContainer = document.querySelector(".note-container");
   const note = document.createElement("div");
 
@@ -14,28 +14,36 @@ function createNewNote(
   note.setAttribute("id", `note-${id}`);
   note.setAttribute("name", `${id}`);
 
-  let eachLabelItem = labelValue
+  let eachLabelItem = labelInput
     .replace(/, /g, ",")
     .split(",")
     .map((item) => {
       if (item !== "") return `<div class="label" name=${id}>${item}</div>`;
     })
     .join("");
+  const object = JSON.stringify({
+    id,
+    titleInput,
+    labelInput,
+    bkgColor,
+    textColor,
+    noteInput,
+  });
   let labelContainer = `<div class="labelContainer" id="labelContainer-${id}" name="labelContainer-${id}">${eachLabelItem}</div>`;
   note.innerHTML = `
   <div class="noteTitle" id='title-${id}' style='${
-    titleValue ? "" : "font-size: 10px; font-style: italic;"
+    titleInput ? "" : "font-size: 10px; font-style: italic;"
   } color: ${textColor}' name=${id}>${
-    titleValue ? titleValue : "(no title)"
+    titleInput ? titleInput : "(no title)"
   } </div>
   <div class="noteText" id='text-${id}' style='${
-    textValue ? "" : "font-size: 10px; font-style: italic;"
+    noteInput ? "" : "font-size: 10px; font-style: italic;"
   } color: ${textColor}' name=${id}>${
-    textValue ? textValue : "(no description)"
+    noteInput ? noteInput : "(no description)"
   } </div>
   <div class="labelAndIconsContainer">
     ${labelContainer}
-    <div class="trash-and-color-container" name=${id} id="trashAndPalette-"${id}>
+    <div class="trash-and-color-container" name=${object} id="trashAndPalette-"${id}>
       <button class="buttonAll buttonTrash" ><i name=${id} class="fas fa-trash buttonTrash"></i></button>
       <button class="buttonAll buttonPalette"><i name=${id} class="fas fa-palette palette">
       <div class="color-tooltip" name=${id}>
