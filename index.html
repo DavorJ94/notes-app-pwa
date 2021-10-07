@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Google Keep Notes Clone" />
+    <meta name="keywords" content="HTML, CSS, SCSS, Vanilla JavaScript" />
+    <meta name="author" content="Davor Jovanovic" />
+    <link rel="icon" href="images/keep_logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Google Keep</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="headerContainer">
+      <button class="btn" id="logInBtn">Log in</button>
+      <button class="btn" id="signUpBtn">Sign Up</button>
+      <button class="btn" id="logOutBtn">Log Out</button>
+    </div>
+
+    <div id="mainContent" style="display: none">
+      <div class="heading">
+        <img src="images/keep_logo.png" alt="logo" class="heading__logo" />
+        <h2 class="heading__text">Keep</h2>
+      </div>
+      <div id="myModal" class="modal">
+        <form class="formInputModal">
+          <input
+            type="text"
+            name="titleModal"
+            placeholder="Title"
+            class="titleInputModal"
+            autocomplete="off"
+          />
+          <textarea
+            name="noteModal"
+            placeholder="Take a note..."
+            class="noteInputModal"
+            oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+          ></textarea>
+          <input
+            type="text"
+            name="labelsModal"
+            placeholder="Labels (separate with comma)"
+            class="labelInputModal"
+            maxlength="30"
+            autocomplete="off"
+            value=""
+          />
+          <div class="form-buttonsModal">
+            <button class="submitModal" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <form class="formInput">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          id="titleInput"
+          class="titleInput"
+          autocomplete="off"
+          value=""
+        />
+        <textarea
+          name="note"
+          placeholder="Take a note..."
+          class="noteInput"
+          rows="1"
+          oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+        ></textarea>
+        <input
+          type="text"
+          name="labels"
+          placeholder="Labels (separate with comma)"
+          class="labelInput titleInput"
+          id="labelInput"
+          maxlength="30"
+          autocomplete="off"
+          value=""
+        />
+        <div class="form-buttons">
+          <button class="submit" type="submit">Submit</button>
+          <button class="close">Close</button>
+        </div>
+      </form>
+      <div class="searchNotesContainer">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          id="searchNotes"
+          placeholder="Search notes..."
+          class="searchNotes"
+        />
+      </div>
+      <p class="notes-message">Notes you add appear here</p>
+      <div class="note-container"></div>
+    </div>
+
+    <!-- Login -->
+    <div id="login" style="display: none">
+      <form class="forms login" id="loginForm">
+        <h2 class="formTitle">Log in</h2>
+        <label for="email" class="formLabel">Email</label>
+        <input
+          placeholder="Enter your email address"
+          type="text"
+          name="email"
+          class="formInputs"
+          required
+        />
+        <label for="password" class="formLabel">Password</label>
+        <input
+          placeholder="Enter your password"
+          type="password"
+          name="password"
+          class="formInputs"
+          required
+        />
+        <button class="formSubmitButton">Log in</button>
+        <div class="loginerror error"></div>
+      </form>
+    </div>
+
+    <!-- SignUp -->
+    <div id="signupContainer" style="display: none">
+      <form class="forms" id="signUpForm">
+        <h2 class="formTitle">Sign up</h2>
+        <label for="email" class="formLabel">Email</label>
+        <input
+          placeholder="Enter your email address"
+          type="email"
+          name="email"
+          class="formInputs"
+          required
+        />
+        <label for="password" class="formLabel">Password</label>
+        <input
+          placeholder="Enter your password"
+          type="password"
+          name="password"
+          class="formInputs"
+          required
+        />
+        <button class="formSubmitButton">Sign up</button>
+      </form>
+    </div>
+  </body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDcmpSVOItUGVRovB_fPUrptEGW-mE_SPA",
+      authDomain: "keep-notes-fa1c4.firebaseapp.com",
+      projectId: "keep-notes-fa1c4",
+      storageBucket: "keep-notes-fa1c4.appspot.com",
+      messagingSenderId: "348905837093",
+      appId: "1:348905837093:web:ad7a118771ff833c4ce5cc",
+      measurementId: "G-RTMRH6BRWJ",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const signUpFormContainer = document.querySelector("#signupContainer");
+    const mainContent = document.querySelector("#mainContent");
+    const loginFormContainer = document.querySelector("#login");
+  </script>
+  <script src="controls/authWidthDB.js"></script>
+
+  <script type="module" src="mainApp.js"></script>
+  <script type="module" src="controls/router.js"></script>
+</html>
