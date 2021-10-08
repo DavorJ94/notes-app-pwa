@@ -10,6 +10,10 @@ const searchNotesInput = document.querySelector(".searchNotes");
 const notesMessage = document.querySelector(".notes-message");
 const signInWithGoogleButton = document.querySelector(".google-btn");
 
+db.enablePersistence().catch((err) =>
+  console.log("Error storing the data", err.message)
+);
+
 auth.onAuthStateChanged((user) => {
   if (user) {
     db.collection("notes/" + user.uid + "/notes").onSnapshot((snapshot) => {

@@ -56,7 +56,8 @@ function createNewNote({
           <div class="color-option" data-color="#fbbc04" data-text-color="black" id="orange"></div>
           <div class="color-option" data-color="#a7ffeb" data-text-color="black" id="teal"></div>
           <div class="color-option" data-color="#46c221" data-text-color="black" id="green"></div>
-        </div></i></div>
+          <div class="color-option" data-color="#ffff00" data-text-color="black" id="yellow"></div>
+          </div></i></div>
       </label>
     </div>
     </div>

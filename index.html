@@ -4,12 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Google Keep Notes Clone" />
-    <meta name="keywords" content="HTML, CSS, SCSS, Vanilla JavaScript" />
+    <meta
+      name="description"
+      content="Keep Notes app created as PWA. It has various functions to change color of the note, as well as edit note, etc."
+    />
+    <meta
+      name="keywords"
+      content="HTML, CSS, SCSS, Vanilla, JavaScript, productivity, notes, keep,"
+    />
     <meta name="author" content="Davor Jovanovic" />
-    <link rel="icon" href="images/keep_logo.png" />
+    <link rel="icon" href="./logos/android/android-launchericon-512-512.png" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Google Keep</title>
+    <!-- ios support-->
+    <link
+      rel="apple-touch-icon"
+      href="./logos/android/android-launchericon-192-192.png"
+    />
+    <meta name="apple-mobile-web-app-status-bar" content="#333333" />
+    <meta name="theme-color" content="#f39766" />
+    <title>Keep Notes</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -164,6 +178,15 @@
     </div>
   </body>
 
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then((reg) => console.log("sw registered"))
+        .catch(() => console.log("sw error"));
+    }
+  </script>
+
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
@@ -187,8 +210,9 @@
     const mainContent = document.querySelector("#mainContent");
     const loginFormContainer = document.querySelector("#login");
   </script>
-  <script type="module" src="controls/authWithDB.js"></script>
 
   <script type="module" src="main.js"></script>
+  <script type="module" src="controls/authWithDB.js"></script>
+
   <script type="module" src="controls/router.js"></script>
 </html>

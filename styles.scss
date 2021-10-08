@@ -13,10 +13,11 @@ body {
   justify-content: center;
   align-items: center;
   color: #5f6368;
-  column-gap: 1em;
+  column-gap: 0.5em;
+  margin-bottom: 1em;
 
   &__logo {
-    width: 3em;
+    width: 5em;
   }
   &__text {
     font-size: 35px;
@@ -452,7 +453,7 @@ a {
 .formSubmitButton {
   margin-top: 30px;
   border-radius: 36px;
-  background: #fee996;
+  background: #f39766;
   border: 0;
   text-transform: uppercase;
   font-weight: 700;
@@ -461,6 +462,8 @@ a {
   padding: 10px 16px;
   letter-spacing: 2px;
   cursor: pointer;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  color: white;
 }
 .error {
   color: #ff0099;
@@ -541,7 +544,8 @@ a {
 }
 
 .btn {
-  background: #fee996;
+  background: #f39766;
+  color: white;
   margin-top: 10px;
   height: 30px;
   border: 0;
@@ -553,6 +557,8 @@ a {
   cursor: pointer;
   text-align: center;
   display: none;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }
 
 // ! Google sign in button
