@@ -1,14 +1,16 @@
-function removeNote(target) {
-  const id = target.getAttribute("name");
+function removeNote(target, shouldSetId) {
+  let id;
+  if (shouldSetId) {
+    id = target;
+  } else {
+    id = target.getAttribute("name");
+  }
 
   db.collection("notes")
     .doc(auth.currentUser?.uid)
     .collection("notes")
     .doc(id)
-    .delete()
-    .then(() => {
-      document.getElementById(`note-${id}`).remove();
-    });
+    .delete();
 }
 
 export default removeNote;

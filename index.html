@@ -20,6 +20,15 @@
       <button class="btn" id="logInBtn">Log in</button>
       <button class="btn" id="signUpBtn">Sign Up</button>
       <button class="btn" id="logOutBtn">Log Out</button>
+      <div class="google-btn">
+        <div class="google-icon-wrapper">
+          <img
+            class="google-icon"
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+          />
+        </div>
+        <p class="btn-text"><b>Sign in</b></p>
+      </div>
     </div>
 
     <div id="mainContent" style="display: none">
@@ -150,6 +159,7 @@
           required
         />
         <button class="formSubmitButton">Sign up</button>
+        <div class="signuperror error"></div>
       </form>
     </div>
   </body>
@@ -179,6 +189,6 @@
   </script>
   <script type="module" src="controls/authWithDB.js"></script>
 
-  <script type="module" src="mainApp.js"></script>
+  <script type="module" src="main.js"></script>
   <script type="module" src="controls/router.js"></script>
 </html>

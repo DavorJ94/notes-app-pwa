@@ -22,7 +22,7 @@ export default function modalFunction(id) {
   if (clickedNoteText !== "(no description)") textInput.value = clickedNoteText;
 }
 
-export function saveToLocalStorageModal(e) {
+export function saveModalValuesToDB(e) {
   e.preventDefault();
   const currentId = document
     .querySelector("#myModal")
@@ -38,16 +38,24 @@ export function saveToLocalStorageModal(e) {
       titleInput: titleInput.value,
       noteInput: textInput.value,
       labelInput: labelInput.value,
+    })
+    .then(() => {
+      titleInput.value = "";
+      textInput.value = "";
+      labelInput.value = "";
+      modal.style.display = "none";
     });
+}
 
-  const clickedNoteTitle = document.querySelector(`#title-${currentId}`);
-  const clickedNoteText = document.querySelector(`#text-${currentId}`);
+export function modifyCards(data) {
+  const clickedNoteTitle = document.querySelector(`#title-${data.id}`);
+  const clickedNoteText = document.querySelector(`#text-${data.id}`);
   const clickedNoteLabels = document.querySelector(
-    `#labelContainer-${currentId}`
+    `#labelContainer-${data.id}`
   );
 
-  if (titleInput.value) {
-    clickedNoteTitle.innerText = titleInput.value;
+  if (data.titleInput) {
+    clickedNoteTitle.innerText = data.titleInput;
     clickedNoteTitle.style.fontSize = "";
     clickedNoteTitle.style.fontStyle = "";
   } else {
@@ -56,8 +64,8 @@ export function saveToLocalStorageModal(e) {
     clickedNoteTitle.style.fontStyle = "italic";
   }
 
-  if (textInput.value) {
-    clickedNoteText.innerText = textInput.value;
+  if (data.noteInput) {
+    clickedNoteText.innerText = data.noteInput;
     clickedNoteText.style.fontSize = "";
     clickedNoteText.style.fontStyle = "";
   } else {
@@ -66,8 +74,8 @@ export function saveToLocalStorageModal(e) {
     clickedNoteText.style.fontStyle = "italic";
   }
 
-  if (labelInput.value) {
-    let eachLabelItem = labelInput.value
+  if (data.labelInput) {
+    let eachLabelItem = data.labelInput
       .replace(/, /g, ",")
       .split(",")
       .map((item) => {
@@ -76,9 +84,4 @@ export function saveToLocalStorageModal(e) {
       .join("");
     clickedNoteLabels.innerHTML = eachLabelItem;
   }
-
-  titleInput.value = "";
-  textInput.value = "";
-  labelInput.value = "";
-  modal.style.display = "none";
 }

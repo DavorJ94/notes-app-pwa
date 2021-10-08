@@ -43,16 +43,21 @@ function createNewNote({
   } </div>
   <div class="labelAndIconsContainer">
     ${labelContainer}
-    <div class="trash-and-color-container" name=${object} id="trashAndPalette-"${id}>
-      <button class="buttonAll buttonTrash" ><i name=${id} class="fas fa-trash buttonTrash"></i></button>
-      <button class="buttonAll buttonPalette"><i name=${id} class="fas fa-palette palette">
-      <div class="color-tooltip" name=${id}>
-        <div class="color-option" data-color="#fff" data-text-color="#5f6368" id="white"></div>
-        <div class="color-option" data-color="#d7aefb" data-text-color="black" id="purple"></div>
-        <div class="color-option" data-color="#fbbc04" data-text-color="black" id="orange"></div>
-        <div class="color-option" data-color="#a7ffeb" data-text-color="black" id="teal"></div>
-        <div class="color-option" data-color="#46c221" data-text-color="black" id="green"></div>
-      </div></i></button>
+    <div class="trash-and-color-container" name=${object} id="trashAndPalette-${id}">
+      <div class="buttonAll buttonTrash" ><i name=${id} class="fas fa-trash buttonTrash"></i></div>
+      <label>
+      <input type="checkbox" class="inputForTooltip" name=${id} style="display:none;" />
+
+        <div class="buttonAll buttonPalette"><i name=${id} class="fas fa-palette palette">
+
+        <div class="color-tooltip" name=${id} id="tooltip-${id}"">
+          <div class="color-option" data-color="#fff" data-text-color="#5f6368" id="white"></div>
+          <div class="color-option" data-color="#d7aefb" data-text-color="black" id="purple"></div>
+          <div class="color-option" data-color="#fbbc04" data-text-color="black" id="orange"></div>
+          <div class="color-option" data-color="#a7ffeb" data-text-color="black" id="teal"></div>
+          <div class="color-option" data-color="#46c221" data-text-color="black" id="green"></div>
+        </div></i></div>
+      </label>
     </div>
     </div>
   `;

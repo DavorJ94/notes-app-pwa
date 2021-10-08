@@ -3,6 +3,9 @@ body {
   margin: 0 auto;
   margin-top: 1em;
   font-family: "Google Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2em;
 }
 
 .heading {
@@ -187,32 +190,12 @@ body {
   visibility: hidden;
 }
 
-.buttonAll {
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  margin-top: 1em;
-  transition: all 0.2s ease;
-}
-
-.buttonTrash:hover {
-  transform: scale(1.2);
-  color: red;
-}
-
-.buttonPalette:hover {
-  transform: scale(1.3);
-  color: rgb(17, 0, 255);
-}
-
 .color-tooltip {
   border-bottom: 2px solid #fff;
   position: absolute;
   background: #fff;
   border: 1px solid black;
-  left: 0;
-  z-index: 20;
+  right: 0;
   border-radius: 5px;
   display: none;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -252,9 +235,6 @@ body {
 
 #green {
   background-color: #46c221;
-}
-.palette:hover > .color-tooltip {
-  display: flex;
 }
 
 .labelAndIconsContainer {
@@ -338,7 +318,8 @@ body {
   align-items: center;
   border-radius: 0.5em;
   margin: 0 auto;
-  width: 40%;
+  width: 80%;
+  max-width: 500px;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
   padding: 0 1em;
   min-height: 30px;
@@ -408,13 +389,6 @@ body {
   background-color: #002fff;
 }
 
-@media (max-width: 1200px) {
-  .color-tooltip {
-    flex-direction: column;
-    row-gap: 0.5em;
-  }
-}
-
 @media (max-width: 900px) {
   .color-option {
     width: 15px;
@@ -450,11 +424,6 @@ a {
   text-decoration: none;
 }
 
-.btn {
-  border-radius: 36px;
-  background: #fee996;
-  margin-top: 0;
-}
 .forms h2 {
   font-size: 2.4em;
   font-weight: 900;
@@ -519,17 +488,129 @@ a {
   height: 50px;
 }
 
+.buttonAll {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-top: 1em;
+  transition: all 0.2s ease;
+}
+
+.buttonAll i {
+  color: black;
+}
+
+.buttonTrash {
+  margin-right: 0.3em;
+}
+
+.buttonTrash:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+@media (min-width: 500px) {
+  .buttonPalette:hover {
+    transform: scale(1.2);
+    color: rgb(17, 0, 255);
+  }
+  .buttonPalette:hover > i {
+    color: rgb(17, 0, 255);
+  }
+
+  .palette:hover > .color-tooltip {
+    display: flex;
+  }
+}
+
+@media (max-width: 500px) {
+  .inputForTooltip:checked + .buttonPalette {
+    transform: scale(1.3);
+    color: rgb(17, 0, 255);
+  }
+  .inputForTooltip:checked + .buttonPalette > i {
+    color: rgb(17, 0, 255);
+  }
+  .inputForTooltip:checked + .buttonPalette .color-tooltip {
+    display: flex;
+  }
+  .fa-palette {
+    color: black;
+  }
+}
+
 .btn {
   background: #fee996;
   margin-top: 10px;
-  border-radius: 36px;
+  height: 30px;
   border: 0;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 0.6em;
-  display: block;
-  padding: 12px 12px;
+  font-size: 14px;
+  padding: 8px 12px;
   letter-spacing: 1px;
   cursor: pointer;
+  text-align: center;
   display: none;
+}
+
+// ! Google sign in button
+
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669f2;
+
+.google-btn {
+  width: 100px;
+  height: 30px;
+  background-color: $google-blue;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: all 0.2s ease;
+  display: none;
+  margin-top: 10px;
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 0.5px;
+    border-radius: 5px 0 0 5px;
+    width: 40px;
+    height: 29px;
+    background-color: $white;
+    left: 0;
+    top: 0;
+  }
+  .google-icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .btn-text {
+    color: $white;
+    margin-right: 10px;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+  &:hover {
+    box-shadow: 2px 2px 6px $google-blue;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}
+
+@media (max-width: 500px) {
+  .btn {
+    font-size: 10px;
+    padding: 10px 10px;
+  }
 }

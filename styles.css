@@ -3,6 +3,9 @@ body {
   margin: 0 auto;
   margin-top: 1em;
   font-family: "Google Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2em;
 }
 
 .heading {
@@ -231,35 +234,12 @@ body {
   visibility: hidden;
 }
 
-.buttonAll {
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  margin-top: 1em;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-.buttonTrash:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-  color: red;
-}
-
-.buttonPalette:hover {
-  -webkit-transform: scale(1.3);
-          transform: scale(1.3);
-  color: #1100ff;
-}
-
 .color-tooltip {
   border-bottom: 2px solid #fff;
   position: absolute;
   background: #fff;
   border: 1px solid black;
-  left: 0;
-  z-index: 20;
+  right: 0;
   border-radius: 5px;
   display: none;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -305,12 +285,6 @@ body {
 
 #green {
   background-color: #46c221;
-}
-
-.palette:hover > .color-tooltip {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .labelAndIconsContainer {
@@ -425,7 +399,8 @@ body {
           align-items: center;
   border-radius: 0.5em;
   margin: 0 auto;
-  width: 40%;
+  width: 80%;
+  max-width: 500px;
   -webkit-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
           box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
   padding: 0 1em;
@@ -503,16 +478,6 @@ body {
   background-color: #002fff;
 }
 
-@media (max-width: 1200px) {
-  .color-tooltip {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    row-gap: 0.5em;
-  }
-}
-
 @media (max-width: 900px) {
   .color-option {
     width: 15px;
@@ -550,12 +515,6 @@ ul {
 
 a {
   text-decoration: none;
-}
-
-.btn {
-  border-radius: 36px;
-  background: #fee996;
-  margin-top: 0;
 }
 
 .forms h2 {
@@ -651,18 +610,146 @@ a {
   height: 50px;
 }
 
+.buttonAll {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-top: 1em;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.buttonAll i {
+  color: black;
+}
+
+.buttonTrash {
+  margin-right: 0.3em;
+}
+
+.buttonTrash:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  color: red;
+}
+
+@media (min-width: 500px) {
+  .buttonPalette:hover {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    color: #1100ff;
+  }
+  .buttonPalette:hover > i {
+    color: #1100ff;
+  }
+  .palette:hover > .color-tooltip {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (max-width: 500px) {
+  .inputForTooltip:checked + .buttonPalette {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    color: #1100ff;
+  }
+  .inputForTooltip:checked + .buttonPalette > i {
+    color: #1100ff;
+  }
+  .inputForTooltip:checked + .buttonPalette .color-tooltip {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .fa-palette {
+    color: black;
+  }
+}
+
 .btn {
   background: #fee996;
   margin-top: 10px;
-  border-radius: 36px;
+  height: 30px;
   border: 0;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 0.6em;
-  display: block;
-  padding: 12px 12px;
+  font-size: 14px;
+  padding: 8px 12px;
   letter-spacing: 1px;
   cursor: pointer;
+  text-align: center;
   display: none;
+}
+
+.google-btn {
+  width: 100px;
+  height: 30px;
+  background-color: #4285f4;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  display: none;
+  margin-top: 10px;
+}
+
+.google-btn .google-icon-wrapper {
+  position: absolute;
+  margin-top: 0.5px;
+  border-radius: 5px 0 0 5px;
+  width: 40px;
+  height: 29px;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+}
+
+.google-btn .google-icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.google-btn .btn-text {
+  color: #fff;
+  margin-right: 10px;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
+}
+
+.google-btn:hover {
+  -webkit-box-shadow: 2px 2px 6px #4285f4;
+          box-shadow: 2px 2px 6px #4285f4;
+}
+
+.google-btn:active {
+  background: #1669f2;
+}
+
+@media (max-width: 500px) {
+  .btn {
+    font-size: 10px;
+    padding: 10px 10px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
