@@ -1,17 +1,21 @@
-# Google Keep Clone
+# Keep Notes - PWA - vanilla JavaScript
 
-Page created mainly for Javascript practice, no additional frameworks.
+Keep Notes PWA created in vanilla JavaScript.
 
-You can preview page at https://davorj94.github.io/google-keep-notes-clone/.
+On backend firestore is used. Also, for authentication firebase authentication is used (you can sign in using username and password or via google).
 
-The page looks like the design from Scrimba, but additional functionality is added and no code is used from there.
+User is logged in on the device as long as the user doesn't intentionally log out.
 
-Each note is saved to local storage and can be accessed during following sessions after its creation.
+Considering it is a PWA, you can install it on desktop and mobiles.
 
-Color picker is added for additional UX.
+Real time data is setup, thus, if you change the note on your mobile, on dekstop change should be instantly rendered.
 
-Also, option to delete each note, as well as edit whichever note user wishes is made possible (achieving the improved UX).
+There are functionalities like changing the color of the note, changing its contents after its initial creation, as well as deleting the note.
+
+You can also search notes if there are more than two.
+
+You can add labels and those labels are searchable, too.
 
 Page is responsive, it is adjusted for mobile phones, as well as desktops.
 
-If you have any advice how to improve this project, feel free to contact me.
+You can use the app via the following link on firebase hosting page: [Keep Notes](keep-notes-fa1c4.firebaseapp.com)
